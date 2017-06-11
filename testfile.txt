@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <stdio.h>
 
 
@@ -7,3 +8,7 @@ int main()
 	
 	return 0;
 }
+=======
+testtest
+testtest
+>>>>>>> sk-13-test
