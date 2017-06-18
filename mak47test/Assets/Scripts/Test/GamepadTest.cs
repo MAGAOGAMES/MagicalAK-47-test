@@ -16,8 +16,8 @@ namespace mak47.test {
 		void Update( ) {
 			var gamepad = Gamepad.Instance;
 
-			foreach (var button in Enum.GetValues(typeof(Gamepad.PhysicalButton))) {
-				if (gamepad.GetButtonDown((Gamepad.PhysicalButton)button)) {
+			foreach (var button in Enum.GetValues(typeof(Gamepad.Button))) {
+				if (gamepad.GetButtonDown((Gamepad.Button)button)) {
 					Debug.Log(button);
 				}
 			}

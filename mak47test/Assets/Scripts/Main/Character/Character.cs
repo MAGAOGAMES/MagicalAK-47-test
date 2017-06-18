@@ -77,7 +77,7 @@ namespace mak47.characters {
 
 		public void ControlByGamepad(Gamepad gamepad) {
 			MoveByGamepad(gamepad.GetAxis(Gamepad.Axis.LeftStick));
-			if(gamepad.GetButtonDown(Gamepad.PhysicalButton.Square)) {
+			if(gamepad.GetButtonDown(Gamepad.Button.Square)) {
 				var interactive = interactiveDetector.InteractiveObject;
 				if (interactive != null) {
 					interactive.AcceptInteract(this);

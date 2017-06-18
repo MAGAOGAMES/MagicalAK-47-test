@@ -5,7 +5,7 @@ using UnityEngine;
 namespace mak47.control {
 	public class KeyConfig {
 		public enum Action { Decide, Cancel }
-		Dictionary<Action, Gamepad.PhysicalButton> config;
+		Dictionary<Action, Gamepad.Button> config;
 
 		static KeyConfig instance;
 		public static KeyConfig Instance {
@@ -16,16 +16,16 @@ namespace mak47.control {
 		}
 
 		KeyConfig() {
-			config = new Dictionary<Action, Gamepad.PhysicalButton>();
-			config.Add(Action.Decide, Gamepad.PhysicalButton.Circle);
-			config.Add(Action.Cancel, Gamepad.PhysicalButton.Cross);
+			config = new Dictionary<Action, Gamepad.Button>();
+			config.Add(Action.Decide, Gamepad.Button.Circle);
+			config.Add(Action.Cancel, Gamepad.Button.Cross);
 		}
 
-		public Gamepad.PhysicalButton ToPhysicalButton(Action button) {
+		public Gamepad.Button ToPhysicalButton(Action button) {
 			return config[button];
 		}
 
-		public void Set(Action action, Gamepad.PhysicalButton button) {
+		public void Set(Action action, Gamepad.Button button) {
 			config[action] = button;
 		}
 	}

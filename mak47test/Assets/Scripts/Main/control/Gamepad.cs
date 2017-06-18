@@ -7,7 +7,7 @@ namespace mak47.control {
 	/// Game pad input.
 	/// </summary>
 	public class Gamepad {
-		public enum PhysicalButton { Circle, Cross, Triangle, Square, R1, R2, L1, L2 }
+		public enum Button { Circle, Cross, Triangle, Square, R1, R2, L1, L2 }
 
 
 		public abstract class Axis {
@@ -24,31 +24,31 @@ namespace mak47.control {
 			public static LeftStickAxis LeftStick { get { return leftStick; } }
 			public static DirectionalPadAxis DirectionalPad { get { return directional; } }
 		}
-		private static Dictionary<PhysicalButton, KeyCode> physicalKeyCodeMap;
+		private static Dictionary<Button, KeyCode> physicalKeyCodeMap;
 
 		private static Gamepad instance;
 		public static Gamepad Instance { get { if (instance == null) instance = new Gamepad(); return instance; } }
 		private Gamepad( ) {
-			physicalKeyCodeMap = new Dictionary<PhysicalButton, KeyCode>();
-			physicalKeyCodeMap.Add(PhysicalButton.Circle, KeyCode.JoystickButton2);
-			physicalKeyCodeMap.Add(PhysicalButton.Cross, KeyCode.JoystickButton1);
-			physicalKeyCodeMap.Add(PhysicalButton.Triangle, KeyCode.JoystickButton3);
-			physicalKeyCodeMap.Add(PhysicalButton.Square, KeyCode.JoystickButton0);
-			physicalKeyCodeMap.Add(PhysicalButton.R1, KeyCode.JoystickButton5);
-			physicalKeyCodeMap.Add(PhysicalButton.R2, KeyCode.JoystickButton7);
-			physicalKeyCodeMap.Add(PhysicalButton.L1, KeyCode.JoystickButton4);
-			physicalKeyCodeMap.Add(PhysicalButton.L2, KeyCode.JoystickButton6);
+			physicalKeyCodeMap = new Dictionary<Button, KeyCode>();
+			physicalKeyCodeMap.Add(Button.Circle, KeyCode.JoystickButton2);
+			physicalKeyCodeMap.Add(Button.Cross, KeyCode.JoystickButton1);
+			physicalKeyCodeMap.Add(Button.Triangle, KeyCode.JoystickButton3);
+			physicalKeyCodeMap.Add(Button.Square, KeyCode.JoystickButton0);
+			physicalKeyCodeMap.Add(Button.R1, KeyCode.JoystickButton5);
+			physicalKeyCodeMap.Add(Button.R2, KeyCode.JoystickButton7);
+			physicalKeyCodeMap.Add(Button.L1, KeyCode.JoystickButton4);
+			physicalKeyCodeMap.Add(Button.L2, KeyCode.JoystickButton6);
 		}
 
-		public bool GetButtonDown( PhysicalButton button ) {
+		public bool GetButtonDown( Button button ) {
 			return Input.GetKeyDown(physicalKeyCodeMap[button]);
 		}
 
-		public bool GetButton( PhysicalButton button ) {
+		public bool GetButton( Button button ) {
 			return Input.GetKey(physicalKeyCodeMap[button]);
 		}
 
-		public bool GetButtonUp( PhysicalButton button ) {
+		public bool GetButtonUp( Button button ) {
 			return true;
 		}
 
