@@ -273,10 +273,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 638831115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45668ef3c2c5ac4b9629462e5b71492, type: 3}
+  m_Script: {fileID: 11500000, guid: e49926dd063df994d9dacf838cdf8974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 0
 --- !u!1 &988501694
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,7 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testCamera: {fileID: 1092819912}
-  character: {fileID: 638831118}
+  character: {fileID: 0}
 --- !u!4 &1796321230
 Transform:
   m_ObjectHideFlags: 0
@@ -713,7 +713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f01847c81773d4fb8eb55181cd705b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testChar: {fileID: 638831118}
+  testPlayer: {fileID: 0}
 --- !u!114 &1796321232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,6 +771,14 @@ Prefab:
     - target: {fileID: 5400000, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
       propertyPath: m_Constraints
       value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200016, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200016, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400022, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 2}

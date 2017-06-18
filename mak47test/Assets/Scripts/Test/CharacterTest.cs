@@ -10,7 +10,7 @@ namespace mak47.test {
 
 	public class CharacterTest : MonoBehaviour {
 
-		[SerializeField] Character testChar;
+		[SerializeField] Player testPlayer;
 
 		// Use this for initialization
 		void Start( ) {
@@ -20,7 +20,7 @@ namespace mak47.test {
 		// Update is called once per frame
 		void Update( ) {
 			var gamepad = Gamepad.Instance;
-			testChar.ControlByGamepad(gamepad);
+			testPlayer.ControlByGamepad(gamepad);
 		}
 	}
 }
