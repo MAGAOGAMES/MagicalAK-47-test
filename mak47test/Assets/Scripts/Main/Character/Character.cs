@@ -30,7 +30,6 @@ namespace mak47.characters {
 		new camera.Camera camera = null;
 
 		//	interact 
-		Interactive interactive;
 		InteractiveDetector interactiveDetector;
 
 		// Use this for initialization
