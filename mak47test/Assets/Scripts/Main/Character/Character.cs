@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using mak47.control;
+using mak47.characters.actions;
 
 namespace mak47.characters {
 	public abstract class Character : MonoBehaviour, camera.Focusable {
 
 		//	components
 		protected GameObject body;
-		protected Animator animator;
-		protected Rigidbody rigidBody;
-
+		public new Rigidbody rigidbody { protected set; get; }
+		public Animator animator { protected set; get; }
+		
 		//	move
 		protected bool isRunning = false;
 		protected bool isWalking = false;
-		[SerializeField] protected float moveSpeed;
-		public float MoveSpeed { set { moveSpeed = value; } get { return moveSpeed; } }
+		[SerializeField] protected float speed;
+		public float moveSpeed { set { speed = value; } get { return speed; } }
+		public float flySpeed { set; get; }
 
 		protected Vector3 velocity = Vector3.zero;
 		protected Vector3 forward = Vector3.forward;
@@ -30,23 +31,47 @@ namespace mak47.characters {
 		//	interact 
 		protected InteractiveDetector interactiveDetector;
 
+		//	actions
+		protected CharacterAction currentAction;
+		public CharacterAction action {
+			set {
+				value.OnDisable();
+				currentAction = value;
+				currentAction.OnEnable();
+			}
+			get { return currentAction; }
+		}
+		public NeutralAction neutral { set; get; }
+		public MoveAction move { set; get; }
+		
+
 		// Use this for initialization
 		private void Start() {
-			MoveSpeed = 5.0f;
-			InitializeComponents();
+			flySpeed = moveSpeed;
+			moveSpeed = 5.0f;
+			Initialize();
 		}
 	
 
 		// Update is called once per frame
 		void Update( ) {
-			
+			currentAction.Update();
 		}
 
-		protected virtual void InitializeComponents() {
+		private void FixedUpdate() {
+			currentAction.FixedUpdate();
+			//ActualMove();
+		}
+
+		protected virtual void Initialize() {
 			body = transform.GetChild(0).gameObject;
 			animator = GetComponent<Animator>();
-			rigidBody = body.GetComponent<Rigidbody>();
+			rigidbody = body.GetComponent<Rigidbody>();
 			interactiveDetector = GetComponentInChildren<InteractiveDetector>();
+
+			neutral = new NeutralAction(this);
+			move = new MoveAction(this);
+			action = neutral;
 		}
 		
 		protected virtual void UpdateTransform() {
@@ -57,17 +82,17 @@ namespace mak47.characters {
 		}
 
 		protected virtual void ActualMove() {
-			var pos = velocity * MoveSpeed * Time.fixedDeltaTime + transform.position;
-			rigidBody.MovePosition(pos);
+			var pos = velocity * moveSpeed * Time.fixedDeltaTime + transform.position;
+			rigidbody.MovePosition(pos);
 		}
 
-		private void FixedUpdate( ) {
-			ActualMove();
-		}
 
-		protected virtual void UpdateAnimation( ) { 
-			animator.SetBool("isRunning", isRunning);
-			animator.SetBool("isWalking", isWalking);
+
+		protected virtual void UpdateAnimation( ) {
+			//animator.SetBool("isRunning", isRunning);
+			//animator.SetBool("isWalking", isWalking);
+			animator.SetBool("isRunning", move.isRunning);
+			animator.SetBool("isWalking", move.isWalking);
 		}
 
 

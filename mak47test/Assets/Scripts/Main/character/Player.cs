@@ -12,7 +12,7 @@ namespace mak47.characters {
 
 		// Use this for initialization
 		void Start() {
-			InitializeComponents();
+			Initialize();
 		}
 
 		// Update is called once per frame
@@ -23,7 +23,12 @@ namespace mak47.characters {
 		}
 
 		private void FixedUpdate() {
-			ActualMove();
+			//ActualMove();
+			currentAction.FixedUpdate();
+		}
+
+		private void LateUpdate() {
+			camera.Offset = Vector3.up * 1.5f + camera.GetDirectionInView(Vector3.right) * 0.5f;
 		}
 
 		public void ControlByGamepad(Gamepad gamepad) {
@@ -43,15 +48,13 @@ namespace mak47.characters {
 				velocity = Vector3.zero;
 				isRunning = false;
 				isWalking = false;
+				action.Move(Vector3.zero);
 				return;
 			}
 			var dir = new Vector3(input.x, 0.0f, input.y);
-			if (camera != null) {
-				dir = camera.GetDirectionInView(dir);
-			}
-			dir.y = 0.0f;
 
-			velocity = dir;
+			currentAction.Move(dir);
+			//velocity = dir;
 			forward = dir != Vector3.zero ? dir : forward;
 			isRunning = (velocity.x * velocity.x + velocity.z * velocity.z) > 0.5f;
 			isWalking = !isRunning;
@@ -59,7 +62,7 @@ namespace mak47.characters {
 
 		public override void AcceptCamera(camera.Camera camera) {
 			base.AcceptCamera(camera);
-			camera.Offset = Vector3.up * 1.5f;
+			camera.Offset = Vector3.up * 1.5f + Vector3.left * 0.5f;
 			camera.transform.parent = transform;
 		}
 	}

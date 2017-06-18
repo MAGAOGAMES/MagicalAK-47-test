@@ -17,7 +17,7 @@ namespace mak47.camera {
 		Vector2 angles;
 		public Vector2 Angles { set { destAngles = value; } get { return angles; } }
 
-		float destDistance = 5.0f;
+		float destDistance = 1.5f;
 		float distance = 5.0f;
 		public float Distance { set { destDistance = value; } get { return distance; } }
 	
