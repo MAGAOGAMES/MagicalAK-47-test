@@ -24,6 +24,7 @@ namespace mak47.camera {
 		// Use this for initialization
 		void Start( ) {
 			camera = GetComponentInChildren<UnityEngine.Camera>();
+			camera.farClipPlane = 2000.0f;
 		}
 
 		// Update is called once per frame
@@ -64,7 +65,7 @@ namespace mak47.camera {
 			Angles += new Vector2(input.y, input.x) ;
 		}
 
-		public void Focus( Focusable target ) {
+		public void Focus(Focusable target) {
 			focusTarget = target;
 			target.AcceptCamera(this);
 			transform.position = Vector3.zero;

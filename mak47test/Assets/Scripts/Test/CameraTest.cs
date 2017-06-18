@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using mak47.camera;
 using mak47.control;
+using mak47.characters;
 
 namespace mak47.test {
 	public class CameraTest : MonoBehaviour {

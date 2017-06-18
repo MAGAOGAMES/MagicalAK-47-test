@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using mak47;
+using mak47.characters;
 using mak47.control;
 
 namespace mak47.test {
@@ -19,9 +20,7 @@ namespace mak47.test {
 		// Update is called once per frame
 		void Update( ) {
 			var gamepad = Gamepad.Instance;
-
-			var leftstickInput = gamepad.GetAxis(Gamepad.Axis.LeftStick);
-			testChar.MoveFromGamepad(leftstickInput);
+			testChar.ControlByGamepad(gamepad);
 		}
 	}
 }

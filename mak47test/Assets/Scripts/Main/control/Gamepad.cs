@@ -57,5 +57,13 @@ namespace mak47.control {
 			var y = Input.GetAxis(axis.GetName() + "Y");
 			return new Vector2(x, y);
 		}
+
+		public float GetL2() {
+			return Input.GetAxis("GP_L2") * 0.5f + 0.5f;
+		}
+
+		public float GetR2() {
+			return Input.GetAxis("GP_R2") * 0.5f + 0.5f;
+		}
 	}
 }
